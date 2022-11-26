@@ -1,5 +1,5 @@
 {
-  "parser": "babel-eslint",
+  "parser": "@babel/eslint-parser",
   "extends": ["react-app"],
   "plugins": ["babel", "jsx-a11y", "jsdoc"],
   "globals": { "_": true },
