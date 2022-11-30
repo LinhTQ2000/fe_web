@@ -1,0 +1,9 @@
+{
+  "page": {
+    "searchButton": "Search",
+    "searchPlaceholder": "Search information",
+    "goBack": "Go back",
+    "logout": "Logout",
+    "darkMode": "Dark mode"
+  }
+}
