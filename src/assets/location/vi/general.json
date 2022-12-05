@@ -5,5 +5,12 @@
     "goBack": "Quay lại trang trước",
     "logout": "Đăng xuất",
     "darkMode": "Chế độ tối"
+  },
+  "menu": {
+    "home": "Khám phá",
+    "private": "Cá nhân",
+    "chart": "Bảng xếp hạng",
+    "radio": "Radio",
+    "follow": "Theo dõi"
   }
 }

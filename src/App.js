@@ -5,6 +5,7 @@ import { Route, Router, Switch } from 'react-router-dom'
 
 import { AppProvinder } from './contexts/appContext'
 import { SocketProvinder } from './contexts/socketContext'
+import PrivateLayout from './layout/private'
 import NotFound from './modules/public/not-found'
 import { appRouter } from './router'
 import history from './sevices/history'
@@ -27,7 +28,11 @@ function App() {
                       exact
                       key={route.path}
                       path={route.path}
-                      render={(props) => <route.component {...props} />}
+                      render={(props) => (
+                        <PrivateLayout>
+                          <route.component {...props} />
+                        </PrivateLayout>
+                      )}
                     />
                   ))}
                   <Route exact path="*" component={NotFound} />
