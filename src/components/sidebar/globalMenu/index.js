@@ -1,30 +1,53 @@
+import { useRef } from 'react'
+
 import { useTheme } from '@emotion/react'
 import {
   Divider,
-  List,
   ListItem,
   ListItemButton,
   ListItemIcon,
   ListItemText,
   Typography,
 } from '@mui/material'
+import clsx from 'clsx'
 import { useTranslation } from 'react-i18next'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import Icon from 'src/components/icon'
-import { routes } from 'src/modules/client/routers'
 
-function GlobalMenu() {
+import { ListMenuStyled } from './style'
+
+function GlobalMenu({ routes }) {
   const theme = useTheme()
   const { t } = useTranslation()
+  const { pathname } = useLocation()
+  const popoverAnchor = useRef([])
+
+  const isActive = (path = '') =>
+    pathname === path ||
+    pathname === `${path}/` ||
+    (path.split('/').length > 2 && pathname.includes(`${path}/`))
 
   return (
     <>
-      <List component="div">
+      <ListMenuStyled component="div">
         {routes.map((route, index) => {
           return (
             <ListItem key={index}>
               <ListItemButton
-                {...(route.path ? { component: Link, to: route.path } : {})}
+                ref={(el) => (popoverAnchor.current[index] = el)}
+                {...(route.path
+                  ? {
+                      component: Link,
+                      to: route.path,
+                    }
+                  : {})}
+                sx={{
+                  mt: '8px',
+                  pr: '10px',
+                }}
+                className={clsx({
+                  active: isActive(route.path),
+                })}
               >
                 <ListItemIcon
                   sx={{
@@ -50,7 +73,7 @@ function GlobalMenu() {
             </ListItem>
           )
         })}
-      </List>
+      </ListMenuStyled>
       <Divider />
     </>
   )
